@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="480.0" style="-fx-background-color: rgb(62,192,192);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.superferryman.client.myChatClient.controller.RegistSuccessController">
+   <children>
+      <Pane layoutY="-9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="480.0" style="-fx-background-color: rgb(62,192,192);">
+         <children>
+            <ImageView fitHeight="94.0" fitWidth="400.0" layoutX="48.0" layoutY="20.0">
+               <image>
+                  <Image url="@../../img/registerLogol.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="2.0" layoutY="122.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="476.0" style="-fx-background-color: white;">
+         <children>
+            <Button fx:id="loginBtn" layoutX="184.0" layoutY="239.0" mnemonicParsing="false" onMouseClicked="#onLoginClicked" onMouseEntered="#onLoginEntered" onMouseExited="#onLoginExited" prefHeight="35.0" prefWidth="88.0" style="-fx-background-radius: 20; -fx-background-color: rgb(64,192,192);" text="返回登录" textFill="#fffbfb">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="16.0" />
+               </font>
+            </Button>
+            <Label alignment="TOP_LEFT" layoutX="183.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="110.0" text="注册成功" textFill="#3ec0c0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="message" alignment="TOP_LEFT" layoutX="123.0" layoutY="136.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="336.0" textFill="#3ec0c0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

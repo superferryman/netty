@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox layoutX="325.0" prefHeight="600.0" prefWidth="577.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.superferryman.client.myChatClient.controller.RightController">
+   <children>
+      <ToolBar maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="RIGHT_TO_LEFT" onMouseDragged="#mouseDragged" onMousePressed="#mousePressed" prefHeight="28.0" prefWidth="200.0" style="-fx-background-color: rgb(0,172,160);" VBox.vgrow="ALWAYS">
+         <items>
+            <Pane fx:id="close" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closeClicked" onMouseEntered="#closeEntered" onMouseExited="#closeExited" prefHeight="27.0" prefWidth="35.0" translateX="-9.0" translateY="-1.0">
+               <children>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="8.0">
+                     <image>
+                        <Image url="@../img/close.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="biggest" layoutX="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#biggestClicked" onMouseEntered="#biggestEntered" onMouseExited="#smallExited" prefHeight="27.0" prefWidth="35.0" translateX="-9.0" translateY="-1.0">
+               <children>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="8.0">
+                     <image>
+                        <Image url="@../img/biggest.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="smallest" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#smallestClick" onMouseEntered="#smallestEntered" onMouseExited="#smallestExited" prefHeight="27.0" prefWidth="35.0" translateX="-12.0" translateY="-1.0">
+               <children>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="8.0">
+                     <image>
+                        <Image url="@../img/smallest.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </items>
+      </ToolBar>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: rgb(0,172,160);">
+         <children>
+            <Label fx:id="chatNameLabel" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="42.0" prefWidth="151.0" text="" textFill="#fffafa">
+               <font>
+                  <Font size="23.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Pane fx:id="moreInfo" layoutX="565.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#moreInfoClicked" onMouseEntered="#moreInfoEntered" onMouseExited="#moreInfoExited" prefHeight="20.0" prefWidth="20.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/more2.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="600.0" style="-fx-background-color: rgb(233,232,237);">
+         <children>
+            <ScrollPane fx:id="scrollerPane" hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="355.0" prefWidth="600.0" style="-fx-background-insets: 0; -fx-padding: 0;">
+               <content>
+                  <VBox fx:id="scrollPaneVBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="600.0" style="-fx-background-color: rgb(233,232,237);">
+            </VBox>
+               </content>
+            </ScrollPane>
+            <ToolBar fx:id="toolBar" layoutY="356.0" maxHeight="-Infinity" minHeight="-Infinity" onMouseClicked="#toolBarClicked" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: rgb(233,232,237);">
+               <items>
+                  <Pane fx:id="emojP" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#emojClick" onMouseEntered="#emojMouseEntered" onMouseExited="#emojMouseExited" prefHeight="30.0" prefWidth="30.0">
+                     <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/emoj.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="fileP" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#fileMouseClicked" onMouseEntered="#fileMouseEntered" onMouseExited="#fileMouseExited" prefHeight="30.0" prefWidth="30.0" translateX="5.0">
+                     <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/file.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="moreP" maxHeight="-Infinity" maxWidth="-Infinity" onMouseExited="#moreMouseExited" onMouseMoved="#moreMouseEntered" prefHeight="30.0" prefWidth="30.0" translateX="10.0">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/more.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </items>
+            </ToolBar>
+            <Separator layoutY="355.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1.0" prefWidth="600.0" style="-fx-background-color: rgb(50,50,50);" />
+            <TextField fx:id="textField" alignment="TOP_LEFT" layoutY="396.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#textFieldPressed" onKeyReleased="#textFieldReleased" onMouseClicked="#textFieldMouseClicked" prefHeight="132.0" prefWidth="600.0" style="-fx-border-radius: 0; -fx-background-color: rgb(233,232,237);">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+         </children>
+      </Pane>
+   </children>
+</VBox>

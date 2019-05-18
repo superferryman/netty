@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="480.0" style="-fx-background-color: rgb(62,192,192);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.superferryman.client.myChatClient.controller.RegistController">
+   <children>
+      <Pane layoutY="-9.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="480.0" style="-fx-background-color: rgb(62,192,192);">
+         <children>
+            <ImageView fitHeight="94.0" fitWidth="400.0" layoutX="48.0" layoutY="20.0">
+               <image>
+                  <Image url="@../../img/registerLogol.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="2.0" layoutY="122.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="476.0" style="-fx-background-color: white;">
+         <children>
+            <HBox layoutX="73.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="400.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../img/login.png" />
+                        </image>
+                  </ImageView>
+                  <TextField fx:id="account" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onAccountKeyPressed" prefHeight="35.0" prefWidth="260.0" promptText="请输入用户名">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="usernameLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="87.0" text="用户名不能为空" textFill="RED" translateX="-17.0" translateY="3.0" visible="false" />
+               </children>
+            </HBox>
+            <HBox layoutX="72.0" layoutY="104.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="365.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/pwd.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField fx:id="pwd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPwdPressed" prefHeight="35.0" prefWidth="260.0" promptText="请输入密码">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </PasswordField>
+                  <Label fx:id="passwordLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="87.0" text="密码不能为空" textFill="RED" translateX="-17.0" translateY="3.0" visible="false" />
+               </children>
+            </HBox>
+            <HBox layoutX="72.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="365.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/pwd.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField fx:id="rePwd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPwdPressed" prefHeight="35.0" prefWidth="260.0" promptText="请确认密码">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </PasswordField>
+                  <Label fx:id="rePasswordLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="87.0" text="密码不一致" textFill="RED" translateX="-17.0" translateY="3.0" visible="false" />
+               </children>
+            </HBox>
+            <Button fx:id="registBtn" layoutX="311.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#onRegistClicked" onMouseEntered="#onRegistEntered" onMouseExited="#onRegistExited" prefHeight="35.0" prefWidth="88.0" style="-fx-background-radius: 20; -fx-background-color: rgb(64,192,192);" text="注册" textFill="#fffbfb">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="loginBtn" layoutX="76.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#onLoginClicked" onMouseEntered="#onLoginEntered" onMouseExited="#onLoginExited" prefHeight="35.0" prefWidth="88.0" style="-fx-background-radius: 20; -fx-background-color: rgb(64,192,192);" text="返回" textFill="#fffbfb">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="208.0" layoutY="244.0" mnemonicParsing="false" onMouseClicked="#onChangeClicked" style="-fx-background-color: rgb(64,192,192); -fx-border-radius: 0;" text="换一张" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fx:id="avator" fitHeight="40.0" fitWidth="40.0" layoutX="150.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/0.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="63.0" layoutY="231.0" prefHeight="40.0" prefWidth="72.0" text="选择头像：" textFill="#9a9090">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

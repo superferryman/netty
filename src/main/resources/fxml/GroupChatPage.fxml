@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="550.0" style="-fx-border-color: rgb(218,218,218); -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.superferryman.client.myChatClient.controller.GroupChatPageController">
+   <children>
+      <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="28.0" prefWidth="546.0" style="-fx-background-color: white;" translateX="2.0" translateY="2.0">
+         <items>
+            <Pane fx:id="closePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onCloseClick" onMouseEntered="#onCloseEntered" onMouseExited="#onCloseExited" prefHeight="30.0" prefWidth="30.0" translateX="-6.0">
+               <children>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="3.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="5.0">
+                     <image>
+                        <Image url="@../img/close2.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Separator maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="30.0" prefWidth="1.0" translateX="234.0" />
+         </items>
+      </ToolBar>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="546.0" style="-fx-background-color: white;" translateX="2.0" translateY="25.0">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="270.0" style="-fx-background-color: white;" translateX="5.0" vbarPolicy="NEVER">
+               <content>
+                  <VBox fx:id="leftVBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="270.0" style="-fx-background-color: white;" />
+               </content>
+            </ScrollPane>
+            <Separator maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="478.0" prefWidth="1.0" />
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="279.0">
+               <children>
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="请勾选需要添加的联系人" translateX="10.0" translateY="5.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="267.0" style="-fx-background-color: white;" translateY="15.0" vbarPolicy="NEVER">
+                     <content>
+                        <VBox fx:id="rightVBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="265.0" style="-fx-background-color: white;" />
+                     </content>
+                  </ScrollPane>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="36.0" prefWidth="274.0" translateY="15.0">
+                     <children>
+                        <Button fx:id="cancelButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#cancelMouseClicked" onMouseEntered="#cancelMouseEntered" onMouseExited="#cancelMouseExited" prefHeight="32.0" prefWidth="60.0" style="-fx-background-color: white; -fx-border-color: rgb(231,231,231); -fx-border-width: 1; -fx-border-radius: 0;" text="取消" translateX="10.0" />
+                        <Button fx:id="commitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#commitMouseClicked" onMouseEntered="#commitMouseEntered" onMouseExited="#commitMouseExited" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: rgb(140,213,140);  -fx-background-radius: 0;" text="确定" textFill="#fffefe" translateX="30.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</Pane>

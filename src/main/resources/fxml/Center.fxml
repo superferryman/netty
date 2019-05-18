@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox layoutX="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="255.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.superferryman.client.myChatClient.controller.CenterController">
+   <children>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="255.0" style="-fx-background-color: rgb(0,172,160);">
+         <children>
+            <TextField focusTraversable="false" layoutX="23.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="160.0" />
+            <ImageView fitHeight="23.0" fitWidth="22.0" layoutX="24.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/search.png" />
+               </image>
+            </ImageView>
+            <Pane fx:id="addPane" layoutX="191.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onAddClick" onMouseEntered="#addMouseEntered" onMouseExited="#addMouseExited" prefHeight="23.0" prefWidth="23.0" style="-fx-background-color: rgb(255,255,255); -fx-background-radius: 4;">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/add.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <ScrollPane fx:id="scrollerPane" fitToHeight="true" hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="530.0" prefWidth="254.0" style="-fx-background-color: rgb(240,239,244); -fx-padding: 0; -fx-background-insets: 0;" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox fx:id="friendVBox" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="255.0" style="-fx-background-color: rgb(240,239,244);" />
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>
