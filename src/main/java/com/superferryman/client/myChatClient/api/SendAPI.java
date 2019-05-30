@@ -2,13 +2,17 @@ package com.superferryman.client.myChatClient.api;
 
 
 import com.superferryman.client.handler.operation.impl.*;
+import com.superferryman.client.myChatClient.utils.GlobalState;
+import com.superferryman.pojo.Message;
 import com.superferryman.pojo.User;
 import com.superferryman.protocol.common.FileUploadFile;
 import com.superferryman.protocol.request.*;
 import com.superferryman.util.SessionUtil;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SendAPI {
     /************************************发送聊天相关信息********************************************/
@@ -32,19 +36,22 @@ public class SendAPI {
     }
 
     //TODO done 发送创建群信息
-    /**@param ids   群成员id列表，以逗号分隔
-     * */
-    public void sendCreateGroupMessage(String from, String ids){
+    /**@param from 发送方id
+     * @param groupName 群名称
+     * @param  ids 群成员id
+     * **/
+    public void sendCreateGroupMessage(String from,String groupName, String ids){
+        System.out.println(groupName);
         // 构造创建群聊数据包
         CreateGroupRequestPacket createGroupRequestPacket = new CreateGroupRequestPacket();
         createGroupRequestPacket.setUserIdList(Arrays.asList(ids.split(",")));
         createGroupRequestPacket.setCreatorId(from);
-        createGroupRequestPacket.setGroupName("群聊");
+        createGroupRequestPacket.setGroupName(groupName);
         createGroupRequestPacket.setGroupDesc("");
         new CreateGroupCommandManager().exec(createGroupRequestPacket, SessionUtil.getCurrentChannel());
     }
 
-    //TODO done 发送文件信息
+    //TODO done 发送单聊文件信息
     /**@param fromId    发送方id
      *@param  to   接收方id
      *@param  file 发送的文件
@@ -54,7 +61,16 @@ public class SendAPI {
         uploadFile.setFile(file);
         uploadFile.setStartPosition(0);
         uploadFile.setFileMd5(file.getName());
-        FileUploadRequestPacket requestPacket = new FileUploadRequestPacket(uploadFile, to, fromId);
+        FileUploadRequestPacket requestPacket = new FileUploadRequestPacket(uploadFile, to, fromId, Message.TYPE_FRIEND);
+        new SendFileCommandManager().exec(requestPacket, SessionUtil.getCurrentChannel());
+    }
+    //TODO 发送群聊文件
+    public void sendGroupFileMEssage(String fromId,String groupId,File file){
+        FileUploadFile uploadFile = new FileUploadFile();
+        uploadFile.setFile(file);
+        uploadFile.setStartPosition(0);
+        uploadFile.setFileMd5(file.getName());
+        FileUploadRequestPacket requestPacket = new FileUploadRequestPacket(uploadFile, groupId, fromId, Message.TYPE_GROUP);
         new SendFileCommandManager().exec(requestPacket, SessionUtil.getCurrentChannel());
     }
 
@@ -151,7 +167,7 @@ public class SendAPI {
         new LogoutCommandManager().exec(new LogoutRequestPacket(), SessionUtil.getCurrentChannel());
     }
 
-    //TODO  发送注册信息
+    //TODO  done 发送注册信息
     /**@name 用户名
      * @password    密码
      * @avator      头像
@@ -160,5 +176,12 @@ public class SendAPI {
         RegisterRequestPacket requestPacket = new RegisterRequestPacket();
         requestPacket.setUser(new User(name, password, avator));
         new RegisterCommandManager().exec(requestPacket, SessionUtil.getCurrentChannel());
+    }
+
+    //TODO 获取目标用户的离线信息
+    /**@param fromId 发送方id
+     * **/
+    public void getAllMessage(String fromId){
+        new ListAllMessageCommandManager().exec(new ListAllMessagesRequestPacket(fromId), SessionUtil.getCurrentChannel());
     }
 }

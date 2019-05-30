@@ -1,6 +1,8 @@
 package com.superferryman.server.handler;
 
 import com.superferryman.dao.impl.GroupMemberDAOImpl;
+import com.superferryman.dao.impl.MessageDAOImpl;
+import com.superferryman.pojo.Message;
 import com.superferryman.pojo.User;
 import com.superferryman.protocol.request.QuitGroupRequestPacket;
 import com.superferryman.protocol.response.QuitGroupResponsePacket;

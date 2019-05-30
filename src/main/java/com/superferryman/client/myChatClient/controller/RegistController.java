@@ -24,6 +24,10 @@ public class RegistController {
     public Label passwordLabel;
     public Label rePasswordLabel;
     private int avatorCnt = 0;
+    private double xOffset;
+    private double yOffset;
+    private double stageX;
+    private double stageY;
 
     @FXML
     public void initialize(){
@@ -92,7 +96,19 @@ public class RegistController {
     }
 
     public void onChangeClicked(MouseEvent mouseEvent) {
-        int cnt = (++avatorCnt)%10;
+        int cnt = (++avatorCnt)%22;
         avator.setImage(new Image("img/"+cnt+".jpg"));
+    }
+
+    public void onPressed(MouseEvent mouseEvent) {
+        xOffset = mouseEvent.getScreenX();
+        yOffset = mouseEvent.getScreenY();
+        stageX = Main.stage.getX();
+        stageY = Main.stage.getY();
+    }
+
+    public void onDragged(MouseEvent mouseEvent) {
+        Main.stage.setX(stageX+ mouseEvent.getScreenX() - xOffset);
+        Main.stage.setY(stageY+ mouseEvent.getScreenY() - yOffset);
     }
 }

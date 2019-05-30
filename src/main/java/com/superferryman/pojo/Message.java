@@ -39,14 +39,35 @@ public class Message {
      */
     private String content;
 
+    /**
+     * 发送方名称
+     */
+    private String senderName;
+
+    /**
+     * 发送方头像
+     */
+    private Integer senderAvator;
+
     public Message() {
     }
 
-    public Message(int messageType, String senderId, String receiverId, String content) {
+    public Message(Long id, int messageType, String senderId, String receiverId, String content, String senderName, Integer senderAvator) {
+        this.id = id;
         this.messageType = messageType;
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.content = content;
+        this.senderName = senderName;
+        this.senderAvator = senderAvator;
+    }
+
+    public Message(String senderId, String receiverId, String content, String senderName, Integer senderAvator) {
+        this.senderId = senderId;
+        this.receiverId = receiverId;
+        this.content = content;
+        this.senderName = senderName;
+        this.senderAvator = senderAvator;
     }
 
     public Long getId() {
@@ -89,6 +110,22 @@ public class Message {
         this.content = content;
     }
 
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+
+    public Integer getSenderAvator() {
+        return senderAvator;
+    }
+
+    public void setSenderAvator(Integer senderAvator) {
+        this.senderAvator = senderAvator;
+    }
+
     @Override
     public String toString() {
         return "Message{" +
@@ -97,6 +134,8 @@ public class Message {
                 ", senderId='" + senderId + '\'' +
                 ", receiverId='" + receiverId + '\'' +
                 ", content='" + content + '\'' +
+                ", senderName='" + senderName + '\'' +
+                ", senderAvator=" + senderAvator +
                 '}';
     }
 }

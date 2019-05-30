@@ -16,6 +16,8 @@ public class TalkItem {
     private String fileURL;
     //头像路径
     private String avatorURL;
+    //发送方名字
+    private String name;
 
     public TalkItem(int type, String paneId, String fromId, String content, String avatorURL,String fileURL) {
         this.type = type;
@@ -24,6 +26,24 @@ public class TalkItem {
         this.content = content;
         this.fileURL = fileURL;
         this.avatorURL = avatorURL;
+    }
+
+    public TalkItem(int type, String paneId, String fromId, String content, String avatorURL,String fileURL, String name) {
+        this.type = type;
+        this.paneId = paneId;
+        this.fromId = fromId;
+        this.content = content;
+        this.fileURL = fileURL;
+        this.avatorURL = avatorURL;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getType() {

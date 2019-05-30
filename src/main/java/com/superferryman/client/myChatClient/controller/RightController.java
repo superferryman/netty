@@ -31,6 +31,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.time.Year;
 import java.util.List;
 
 
@@ -57,6 +58,7 @@ public class RightController {
     public static TextField myTextField;
     public boolean emojClicked = false;
     public boolean fileClicked = false;
+    public Label extendLabel;
     private int tag = 0;
     private MessageItemFactory messageItemFactory = new MessageItemFactory();
     public void mouseDragged(MouseEvent mouseEvent) {
@@ -144,7 +146,7 @@ public class RightController {
     }
     public void textFieldPressed(KeyEvent keyEvent) {
 
-        if(keyEvent.getCode().getName().equals("Enter") && GlobalState.userManager.getCurrentUser().getUserInfo() != null)
+        if(keyEvent.getCode().getName().equals("Enter") && GlobalState.userManager.getCurrentUser().getUserInfo() != null && textField.getText().trim().length() > 0)
         {
                 new MessagePrepare().sendWordMessage(textField.getText(),scrollPaneVBox,0,null);
                 textField.clear();
@@ -237,8 +239,11 @@ public class RightController {
 
     public void moreInfoClicked(MouseEvent mouseEvent) {
         //获取被点击项信息
-        UserInfo userInfo = GlobalState.userManager.getCurrentUser().getUserInfo();
-        if(userInfo == null) return;
+        UserInfo userInfo = null;
+        if(GlobalState.userManager.getCurrentUser() == null || GlobalState.userManager.getCurrentUser().getUserInfo() == null){
+            return;
+        }
+        userInfo = GlobalState.userManager.getCurrentUser().getUserInfo();
         String id = userInfo.getId();
         String name = userInfo.getUsername();
         String avatorURL = userInfo.getAvatorURL();
@@ -289,5 +294,24 @@ public class RightController {
     }
     public void exitStyle(Pane pane){
         pane.setStyle("-fx-background-color:null;-fx-background-radius: 5px");
+    }
+
+
+    private double extendX;
+    private double extendY;
+    private double extendNX;
+    private double extendNY;
+    public void onExtendPressed(MouseEvent mouseEvent) {
+        extendX = mouseEvent.getScreenX();
+        extendY = mouseEvent.getScreenY();
+    }
+
+    public void onExtendDragged(MouseEvent mouseEvent) {
+        double xd = mouseEvent.getScreenX() - extendX;
+        double yd = mouseEvent.getScreenY() - extendY;
+        if(xd > 0 && yd > 0){
+            Main.stage.setWidth(Main.stage.getWidth()+xd);
+            Main.stage.setHeight(Main.stage.getHeight()+ yd);
+        }
     }
 }

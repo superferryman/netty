@@ -1,6 +1,7 @@
 package com.superferryman.client.handler;
 
 import com.superferryman.client.myChatClient.api.AcceptAPI;
+import com.superferryman.client.myChatClient.bean.User;
 import com.superferryman.protocol.response.CreateGroupResponsePacket;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -25,6 +26,8 @@ public class CreateGroupResponseHandler extends SimpleChannelInboundHandler<Crea
         System.out.print("群创建成功，id 为[" + responsePacket.getGroupId() + "], ");
 
         // 调用 UI 显示加入的群组
-        new AcceptAPI().addGroupHandle(String.valueOf(responsePacket.getGroupId()));
+        new AcceptAPI().addGroupHandle(new User(
+                String.valueOf(responsePacket.getGroupId()), responsePacket.getGroupName(), 101
+        ));
     }
 }

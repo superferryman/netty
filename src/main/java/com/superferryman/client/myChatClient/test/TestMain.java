@@ -30,19 +30,11 @@ import java.io.IOException;
 import java.nio.Buffer;
 import java.nio.channels.FileChannel;
 
-public class TestMain extends Application {
-    @Override
-    public void start(final Stage stage) throws Exception {
-        final Group group = new Group();
-        final Scene scene = new Scene(group, 600, 400, Color.GHOSTWHITE);
-        stage.setScene(scene);
-        stage.setTitle("JavaFX 2 Animations");
-        stage.show();
-        ImageView imageView = new ImageView("file:G:\\uploads\\1.jpg");
-        group.getChildren().add(imageView);
-    }
+public class TestMain extends  Application{
 
-    public static void main(final String[] arguments) {
-        Application.launch(arguments);
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        //new ImageWindow().start(new File("F:/1.png"));
     }
 }

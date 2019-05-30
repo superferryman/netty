@@ -23,6 +23,9 @@ public class DeleteFriendResponseHandler extends SimpleChannelInboundHandler<Del
             System.out.println("好友删除成功");
             new AcceptAPI().deleteFriendHandle(responsePacket.getFriendId());
         } else {
+            if ("好友删除异常".equals(responsePacket.getMessage())) {
+                new AcceptAPI().deleteFriendHandle(responsePacket.getFriendId());
+            }
             System.out.println(responsePacket.getMessage());
         }
     }

@@ -51,4 +51,14 @@ public interface MessageDAO extends BaseDAO<Message, Long> {
      * @throws Exception 处理过程中发生错误均抛出异常到业务层处理
      */
     List<Message> findBySenderAndReceiver(String senderId, String receiverId, int type) throws Exception;
+
+    /**
+     * 根据发送者和接收者删除指定类型的消息
+     * @param senderId 发送者 id
+     * @param receiverId 接收者 id
+     * @param type 消息类型
+     * @return 影响的行数
+     * @throws Exception 处理过程中发生错误均抛出异常到业务层处理
+     */
+    boolean deleteBySenderAndReceiver(String senderId, String receiverId, int type) throws Exception;
 }

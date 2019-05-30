@@ -1,7 +1,9 @@
 package com.superferryman.server.handler;
 
 import com.superferryman.dao.impl.MessageDAOImpl;
+import com.superferryman.dao.impl.UserDAOImpl;
 import com.superferryman.pojo.Message;
+import com.superferryman.pojo.User;
 import com.superferryman.protocol.request.GroupMessageRequestPacket;
 import com.superferryman.protocol.response.GroupMessageResponsePacket;
 import com.superferryman.session.Session;
@@ -37,13 +39,18 @@ public class GroupMessageRequestHandler extends SimpleChannelInboundHandler<Grou
         ChannelGroup channelGroup = SessionUtil.getChannelGroup(Integer.valueOf(groupId));
 
         if (channelGroup != null) {
+            User user = UserDAOImpl.INSTANCE.findById(session.getUserId());
             // 创建消息实体并添加到数据库中
             Message message = new Message();
             message.setContent(requestPacket.getMessage());
             message.setMessageType(Message.TYPE_GROUP);
             message.setReceiverId(requestPacket.getToGroupId());
-            message.setSenderId(session.getUserId());
+            message.setSenderId(user.getUserId());
+            message.setSenderName(user.getUsername());
+            message.setSenderAvator(user.getAvator());
             MessageDAOImpl.INSTANCE.add(message);
+
+            responsePacket.setUserAvator(user.getAvator());
 
             for (Channel channel : channelGroup) {
                 if (channel != ctx.channel()) {

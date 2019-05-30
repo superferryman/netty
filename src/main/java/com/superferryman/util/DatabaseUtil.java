@@ -69,7 +69,7 @@ public class DatabaseUtil {
      * 获取数据库连接
      * @return 数据库连接对象
      */
-    public static Connection getConnection() {
+    private static Connection getConnection() {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, username, password);
@@ -86,7 +86,7 @@ public class DatabaseUtil {
      * @param pstmt PreparedStatement 对象
      * @param conn 数据库连接对象
      */
-    public static void release(ResultSet rs, PreparedStatement pstmt, Connection conn) {
+    private static void release(ResultSet rs, PreparedStatement pstmt, Connection conn) {
         // 关闭结果集
         if (rs != null) {
             try {
@@ -144,7 +144,7 @@ public class DatabaseUtil {
      * @param params 对象需要的参数
      * @return 要查询的 Java 对象列表
      */
-    public static Object execQuery(String sql, Class tClass, Object... params) {
+    public static Object execQuery(String sql, Class tClass, Object... params) throws SQLException {
         ResultSet rs = null;
         PreparedStatement pstmt = null;
         Connection conn = null;
@@ -175,7 +175,7 @@ public class DatabaseUtil {
      * @param params sql 语句的参数列表
      * @return 影响行数
      */
-    public static int execUpdate(String sql, Object... params) {
+    public static int execUpdate(String sql, Object... params) throws SQLException {
         Connection conn = null;
         PreparedStatement pstmt = null;
         try {
@@ -197,7 +197,7 @@ public class DatabaseUtil {
      * @param tClass 转换的目标对象类
      * @return 转换后的 Java 实体对象
      */
-    public static Object convert(ResultSet rs, Class tClass) {
+    private static Object convert(ResultSet rs, Class tClass) {
         try {
             if ("java.lang.Object".equals(tClass.getName())) {
                 return rs.getObject(1);

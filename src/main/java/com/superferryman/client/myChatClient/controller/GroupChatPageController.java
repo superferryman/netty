@@ -4,6 +4,8 @@ import com.superferryman.client.myChatClient.api.SendAPI;
 import com.superferryman.client.myChatClient.utils.GlobalState;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -11,6 +13,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 import java.util.List;
+import java.util.Random;
 
 public class GroupChatPageController {
 
@@ -19,6 +22,8 @@ public class GroupChatPageController {
     public VBox rightVBox;
     public Button commitButton;
     public Button cancelButton;
+    public TextField groupNameField;
+    public Label groupNameTipLabel;
 
     public void onCloseClick(MouseEvent mouseEvent) {
         cancelFillStyle(leftVBox.getChildren());
@@ -49,6 +54,11 @@ public class GroupChatPageController {
      * 确认创建群聊按钮，获取选中好友并发送请求，关闭面板
      * */
     public void commitMouseClicked(MouseEvent mouseEvent) {
+        String name = groupNameField.getText();
+        if(name.trim().length() <= 0){
+            groupNameTipLabel.setVisible(true);
+            return;
+        }
         String message = GlobalState.userManager.getMyInfo().getId();
         String myId = message;
         for(Node n : leftVBox.getChildren())
@@ -63,7 +73,7 @@ public class GroupChatPageController {
         }
         cancelFillStyle(leftVBox.getChildren());
         // 增加了来源 Id
-        new SendAPI().sendCreateGroupMessage(myId, message);
+        new SendAPI().sendCreateGroupMessage(myId,name,message);
         GlobalState.groupStage.close();
     }
     public void commitMouseEntered(MouseEvent mouseEvent) {

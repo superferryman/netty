@@ -16,13 +16,32 @@ public class FileDownloadRequestPacket extends Packet {
 
     private String fromId;
 
+    private int type;
+
+    private Integer groupId;
+
+    private String username;
+
+    private Integer userAvator;
+
     public FileDownloadRequestPacket() {
     }
 
-    public FileDownloadRequestPacket(int start, FileUploadFile downloadFile, String fromId) {
+    public FileDownloadRequestPacket(int start, FileUploadFile downloadFile, String fromId, int type) {
         this.start = start;
         this.downloadFile = downloadFile;
         this.fromId = fromId;
+        this.type = type;
+    }
+
+    public FileDownloadRequestPacket(int start, FileUploadFile downloadFile, String fromId, int type, Integer groupId, String username, Integer userAvator) {
+        this.start = start;
+        this.downloadFile = downloadFile;
+        this.fromId = fromId;
+        this.type = type;
+        this.groupId = groupId;
+        this.username = username;
+        this.userAvator = userAvator;
     }
 
     public String getFromId() {
@@ -47,6 +66,38 @@ public class FileDownloadRequestPacket extends Packet {
 
     public void setDownloadFile(FileUploadFile downloadFile) {
         this.downloadFile = downloadFile;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public Integer getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Integer getUserAvator() {
+        return userAvator;
+    }
+
+    public void setUserAvator(Integer userAvator) {
+        this.userAvator = userAvator;
     }
 
     @Override

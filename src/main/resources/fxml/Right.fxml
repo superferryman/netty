@@ -45,7 +45,7 @@
       </ToolBar>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: rgb(0,172,160);">
          <children>
-            <Label fx:id="chatNameLabel" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="42.0" prefWidth="151.0" text="" textFill="#fffafa">
+            <Label fx:id="chatNameLabel" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="42.0" prefWidth="300.0" text="" textFill="#fffafa">
                <font>
                   <Font size="23.0" />
                </font>
@@ -109,6 +109,11 @@
                   <Font size="15.0" />
                </font>
             </TextField>
+            <Label fx:id="extendLabel" layoutX="600.0" layoutY="530.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#onExtendDragged" onMousePressed="#onExtendPressed" prefHeight="1.0" prefWidth="1.0">
+               <cursor>
+                  <Cursor fx:constant="SE_RESIZE" />
+               </cursor>
+            </Label>
          </children>
       </Pane>
    </children>

@@ -26,6 +26,11 @@ public class GroupMessageResponsePacket extends Packet {
      */
     private Session fromUser;
 
+    /**
+     * 来源用户头像
+     */
+    private Integer userAvator;
+
     public String getFromGroupId() {
         return fromGroupId;
     }
@@ -48,6 +53,14 @@ public class GroupMessageResponsePacket extends Packet {
 
     public void setFromUser(Session fromUser) {
         this.fromUser = fromUser;
+    }
+
+    public Integer getUserAvator() {
+        return userAvator;
+    }
+
+    public void setUserAvator(Integer userAvator) {
+        this.userAvator = userAvator;
     }
 
     @Override

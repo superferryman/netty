@@ -16,7 +16,7 @@ public class MessageDAOImpl implements MessageDAO {
 
     private MessageDAOImpl() {}
 
-    private static final String ALL_COLUMNS = "id, messageType, senderId, receiverId, content";
+    private static final String ALL_COLUMNS = "id, messageType, senderId, receiverId, content, senderName, senderAvator";
 
     @SuppressWarnings("unchecked")
     @Override
@@ -63,9 +63,9 @@ public class MessageDAOImpl implements MessageDAO {
 
     @Override
     public boolean add(Message message) throws Exception {
-        String sql = "insert into message values(null, ?, ?, ?, ?)";
+        String sql = "insert into message values(null, ?, ?, ?, ?, ?, ?)";
         int row = DatabaseUtil.execUpdate(sql, message.getMessageType(), message.getSenderId(),
-                message.getReceiverId(), message.getContent());
+                message.getReceiverId(), message.getContent(), message.getSenderName(), message.getSenderAvator());
         return row > 0;
     }
 
@@ -74,6 +74,15 @@ public class MessageDAOImpl implements MessageDAO {
         String sql = "delete from message where id = ?";
         int row = DatabaseUtil.execUpdate(sql, message.getId());
         return row > 0;
+    }
+
+
+    @Override
+    public boolean deleteBySenderAndReceiver(String senderId, String receiverId, int type) throws Exception {
+        String sql = "delete from message where senderId = ? and messageType = ? and receiverId = ?";
+        int row = DatabaseUtil.execUpdate(sql, senderId, type, receiverId);
+        int row2 = DatabaseUtil.execUpdate(sql, receiverId, type, senderId);
+        return (row > 0 || row2 > 0);
     }
 
     @Override

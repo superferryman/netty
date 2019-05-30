@@ -40,7 +40,7 @@ public class CreateGroupRequestHandler extends SimpleChannelInboundHandler<Creat
         List<String> userIdList = requestPacket.getUserIdList();
         // 创建群组对象
         Group group = new Group(requestPacket.getGroupName(), requestPacket.getGroupDesc(),
-                new Random().nextInt(9), requestPacket.getCreatorId());
+                requestPacket.getAvator(), requestPacket.getCreatorId());
         // 创建群
         boolean row = GroupDAOImpl.INSTANCE.add(group);
         if (!row) {
@@ -69,6 +69,7 @@ public class CreateGroupRequestHandler extends SimpleChannelInboundHandler<Creat
 
             responsePacket.setSuccess(true);
             responsePacket.setGroupId(groupId);
+            responsePacket.setGroupName(requestPacket.getGroupName());
 
             // 给每个客户端发送拉群通知
             channelGroup.writeAndFlush(responsePacket);

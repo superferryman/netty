@@ -1,5 +1,8 @@
 package com.superferryman.server.handler;
 
+import com.superferryman.dao.impl.UserDAOImpl;
+import com.superferryman.pojo.Message;
+import com.superferryman.pojo.User;
 import com.superferryman.protocol.common.StringConst;
 import com.superferryman.protocol.common.FileUploadFile;
 import com.superferryman.protocol.request.FileUploadRequestPacket;
@@ -10,6 +13,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.group.ChannelGroup;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -53,18 +57,33 @@ public class FileUploadRequestHandler extends SimpleChannelInboundHandler<FileUp
         // 更新起始位置
         start = start + byteRead;
         if (byteRead > 0) {
-            ctx.writeAndFlush(new FileUploadResponsePacket(start, uploadFile, requestPacket.getFriendId(), requestPacket.getUserId()));
+            ctx.writeAndFlush(new FileUploadResponsePacket(start, uploadFile, requestPacket.getReceiverId(),
+                    requestPacket.getUserId(), requestPacket.getType()));
             randomAccessFile.close();
             // 如果当前为文件结束
             if (byteRead < 1024 * 10) {
                 Thread.sleep(1000);
-                sendFile(SessionUtil.getChannel(requestPacket.getFriendId()), file, requestPacket.getUserId(), uploadFile.getLength());
+                if (requestPacket.getType() == Message.TYPE_FRIEND) {
+                    sendFile(SessionUtil.getChannel(requestPacket.getReceiverId()), file,
+                            requestPacket.getUserId(), uploadFile.getLength(), requestPacket.getType(), null);
+                } else if (requestPacket.getType() == Message.TYPE_GROUP) {
+                    ChannelGroup channelGroup = SessionUtil.getChannelGroup(
+                            Integer.valueOf(requestPacket.getReceiverId()));
+                    if (channelGroup != null) {
+                        for (Channel channel : channelGroup) {
+                            if (channel != SessionUtil.getChannel(requestPacket.getUserId())) {
+                                sendFile(channel, file, requestPacket.getUserId(), uploadFile.getLength(),
+                                        requestPacket.getType(), Integer.valueOf(requestPacket.getReceiverId()));
+                            }
+                        }
+                    }
+                }
             }
         }
         System.out.println("服务器处理客户端文件完毕，文件路径:" + path + "," + byteRead);
     }
 
-    private void sendFile(Channel channel, File file, String fromId, long length) {
+    private void sendFile(Channel channel, File file, String fromId, long length, int type, Integer groupId) {
         FileUploadFile downloadFile = new FileUploadFile();
         downloadFile.setFile(file);
         downloadFile.setStartPosition(0);
@@ -87,12 +106,16 @@ public class FileUploadRequestHandler extends SimpleChannelInboundHandler<FileUp
                 }
                 downloadFile.setBytes(bytes);
                 downloadFile.setLength(length);
-                channel.writeAndFlush(new FileDownloadResponsePacket(downloadFile, fromId));
+                if (type == Message.TYPE_FRIEND) {
+                    channel.writeAndFlush(new FileDownloadResponsePacket(downloadFile, fromId, type));
+                } else if (type == Message.TYPE_GROUP) {
+                    User user = UserDAOImpl.INSTANCE.findById(fromId);
+                    channel.writeAndFlush(new FileDownloadResponsePacket(downloadFile,
+                            fromId, type, groupId, user.getUsername(), user.getAvator()));
+                }
             }
             System.out.println("文件已开始传输");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

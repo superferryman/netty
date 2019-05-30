@@ -10,13 +10,11 @@ import javax.swing.border.EmptyBorder;
 
 import com.superferryman.dao.impl.UserDAOImpl;
 import com.superferryman.pojo.User;
-import com.superferryman.util.SessionUtil;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.List;
 
 /**
  * 服务端修改个人信息模态窗口

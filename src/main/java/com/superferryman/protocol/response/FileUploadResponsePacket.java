@@ -23,21 +23,27 @@ public class FileUploadResponsePacket extends Packet {
     /**
      * 接收方 Id
      */
-    private String friendId;
+    private String receiverId;
 
     /**
      * 发送方 Id
      */
     private String userId;
 
+    /**
+     * 消息类型
+     */
+    private int type;
+
     public FileUploadResponsePacket() {
     }
 
-    public FileUploadResponsePacket(int start, FileUploadFile fileUploadFile, String friendId, String userId) {
+    public FileUploadResponsePacket(int start, FileUploadFile uploadFile, String receiverId, String userId, int type) {
         this.start = start;
-        this.uploadFile = fileUploadFile;
-        this.friendId = friendId;
+        this.uploadFile = uploadFile;
+        this.receiverId = receiverId;
         this.userId = userId;
+        this.type = type;
     }
 
     public FileUploadFile getUploadFile() {
@@ -56,12 +62,20 @@ public class FileUploadResponsePacket extends Packet {
         this.start = start;
     }
 
-    public String getFriendId() {
-        return friendId;
+    public String getReceiverId() {
+        return receiverId;
     }
 
-    public void setFriendId(String friendId) {
-        this.friendId = friendId;
+    public void setReceiverId(String receiverId) {
+        this.receiverId = receiverId;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public String getUserId() {

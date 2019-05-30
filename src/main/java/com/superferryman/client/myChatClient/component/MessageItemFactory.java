@@ -33,14 +33,14 @@ public class MessageItemFactory{
         }
         if(!paneId.equals(fromId))
         {
-            name = GlobalState.userManager.getUserInfoById(fromId).getUsername();
+            name = talkItem.getName();
         }
         if(talkItem.getType() == 0) {
             return chatItem.getChatItem(name, talkItem.getAvatorURL(), talkItem.getContent(), flag);
         } else if(talkItem.getType() == 1) {
             return fileItem.getFileItem(name, talkItem.getAvatorURL(), talkItem.getContent(), flag,talkItem.getFileURL());
         }else if(talkItem.getType() == 2){
-            return new AlertItem().getInfoLabel(200,0,250,20,talkItem.getContent());
+            return new AlertItem().getInfoLabel(200,30,250,20,talkItem.getContent());
         }else if(talkItem.getType() == 3){
             return  chatItem.getChatImgItem(name,talkItem.getAvatorURL(),talkItem.getFileURL(),flag);
         }

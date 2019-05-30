@@ -4,11 +4,12 @@ import com.superferryman.client.myChatClient.Main;
 import com.superferryman.client.myChatClient.utils.GlobalState;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 public class RegistSuccessController {
     public Button loginBtn;
-    public Label message;
+    public TextField message;
 
     public void onLoginClicked(MouseEvent mouseEvent) {
         Main.stage.setHeight(320);

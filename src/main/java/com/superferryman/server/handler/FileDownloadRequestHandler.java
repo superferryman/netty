@@ -1,5 +1,6 @@
 package com.superferryman.server.handler;
 
+import com.superferryman.pojo.Message;
 import com.superferryman.protocol.common.FileUploadFile;
 import com.superferryman.protocol.request.FileDownloadRequestPacket;
 import com.superferryman.protocol.response.FileDownloadResponsePacket;
@@ -45,7 +46,15 @@ public class FileDownloadRequestHandler extends SimpleChannelInboundHandler<File
                 downloadFile.setEndPosition(byteRead);
                 downloadFile.setBytes(bytes);
                 downloadFile.setStartPosition(start);
-                ctx.writeAndFlush(new FileDownloadResponsePacket(downloadFile, requestPacket.getFromId()));
+                int type = requestPacket.getType();
+                if (type == Message.TYPE_FRIEND) {
+                    ctx.writeAndFlush(new FileDownloadResponsePacket(downloadFile,
+                            requestPacket.getFromId(), requestPacket.getType()));
+                } else if (type == Message.TYPE_GROUP) {
+                    ctx.writeAndFlush(new FileDownloadResponsePacket(downloadFile, requestPacket.getFromId(),
+                            requestPacket.getType(), requestPacket.getGroupId(), requestPacket.getUsername(),
+                            requestPacket.getUserAvator()));
+                }
                 // 防止因特殊情况而导致的文件被占用
                 randomAccessFile.close();
             } else {

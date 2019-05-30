@@ -1,5 +1,6 @@
 package com.superferryman.client.handler;
 
+import com.superferryman.client.myChatClient.api.AcceptAPI;
 import com.superferryman.pojo.Message;
 import com.superferryman.protocol.response.ListAllMessagesResponsePacket;
 import io.netty.channel.ChannelHandler;
@@ -21,9 +22,6 @@ public class ListAllMessagesResponseHandler extends SimpleChannelInboundHandler<
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ListAllMessagesResponsePacket responsePacket) throws Exception {
-        List<Message> messages = responsePacket.getMessages();
-        for (Message m : messages) {
-            System.out.println(m);
-        }
+        new AcceptAPI().myAllMessageHandle(responsePacket.getMessages());
     }
 }

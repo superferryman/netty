@@ -204,7 +204,9 @@ public class UserManager {
         }
         renderChatList();
     }
-
+    public void setNullCurrentUser(){
+        currentUser = null;
+    }
     public ImageView getMyImage() {
         return myImage;
     }

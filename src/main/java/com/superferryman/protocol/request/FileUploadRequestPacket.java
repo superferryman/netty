@@ -18,20 +18,26 @@ public class FileUploadRequestPacket extends Packet {
     /**
      * 接收方的 Id
      */
-    private String friendId;
+    private String receiverId;
 
     /**
      * 发送方 Id
      */
     private String userId;
 
+    /**
+     * 消息类型
+     */
+    private int type;
+
     public FileUploadRequestPacket() {
     }
 
-    public FileUploadRequestPacket(FileUploadFile uploadFile, String friendId, String userId) {
+    public FileUploadRequestPacket(FileUploadFile uploadFile, String receiverId, String userId, int type) {
         this.uploadFile = uploadFile;
-        this.friendId = friendId;
+        this.receiverId = receiverId;
         this.userId = userId;
+        this.type = type;
     }
 
     public FileUploadFile getUploadFile() {
@@ -42,12 +48,12 @@ public class FileUploadRequestPacket extends Packet {
         this.uploadFile = uploadFile;
     }
 
-    public String getFriendId() {
-        return friendId;
+    public String getReceiverId() {
+        return receiverId;
     }
 
-    public void setFriendId(String friendId) {
-        this.friendId = friendId;
+    public void setReceiverId(String receiverId) {
+        this.receiverId = receiverId;
     }
 
     public String getUserId() {
@@ -56,6 +62,14 @@ public class FileUploadRequestPacket extends Packet {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     @Override

@@ -22,7 +22,6 @@
                   </ImageView>
                </children>
             </Pane>
-            <Separator maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="30.0" prefWidth="1.0" translateX="234.0" />
          </items>
       </ToolBar>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="546.0" style="-fx-background-color: white;" translateX="2.0" translateY="25.0">
@@ -40,12 +39,22 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="267.0" style="-fx-background-color: white;" translateY="15.0" vbarPolicy="NEVER">
+                  <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="357.0" prefWidth="267.0" style="-fx-background-color: white;" translateY="15.0" vbarPolicy="NEVER">
                      <content>
-                        <VBox fx:id="rightVBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="265.0" style="-fx-background-color: white;" />
+                        <VBox fx:id="rightVBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="265.0" style="-fx-background-color: white;" />
                      </content>
                   </ScrollPane>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="36.0" prefWidth="274.0" translateY="15.0">
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="270.0" translateY="25.0">
+                     <children>
+                        <TextField fx:id="groupNameField" layoutX="8.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="请输入群名称">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </TextField>
+                        <Label fx:id="groupNameTipLabel"  layoutX="162.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="120.0" text="名称不能为空" textFill="RED" visible="false" />
+                     </children>
+                  </Pane>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="36.0" prefWidth="274.0" translateY="32.0">
                      <children>
                         <Button fx:id="cancelButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#cancelMouseClicked" onMouseEntered="#cancelMouseEntered" onMouseExited="#cancelMouseExited" prefHeight="32.0" prefWidth="60.0" style="-fx-background-color: white; -fx-border-color: rgb(231,231,231); -fx-border-width: 1; -fx-border-radius: 0;" text="取消" translateX="10.0" />
                         <Button fx:id="commitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#commitMouseClicked" onMouseEntered="#commitMouseEntered" onMouseExited="#commitMouseExited" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: rgb(140,213,140);  -fx-background-radius: 0;" text="确定" textFill="#fffefe" translateX="30.0" />

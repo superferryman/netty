@@ -77,7 +77,7 @@ public class AllUsersPanel extends JPanel {
      * @return 在线用户的二维数组
      */
     private Object[][] onlineUsers() {
-        SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd-hh-ss");
+        SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
         List<User> list = null;
         try {
             list = UserDAOImpl.INSTANCE.findAll();

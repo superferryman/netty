@@ -1,6 +1,8 @@
 package com.superferryman.server.handler;
 
 import com.superferryman.dao.impl.FriendDAOImpl;
+import com.superferryman.dao.impl.MessageDAOImpl;
+import com.superferryman.pojo.Message;
 import com.superferryman.protocol.request.DeleteFriendRequestPacket;
 import com.superferryman.protocol.response.DeleteFriendResponsePacket;
 import io.netty.channel.ChannelHandler;
@@ -23,6 +25,7 @@ public class DeleteFriendRequestHandler extends SimpleChannelInboundHandler<Dele
         DeleteFriendResponsePacket responsePacket = new DeleteFriendResponsePacket();
         String userId = requestPacket.getUserId();
         String friendId = requestPacket.getFriendId();
+        responsePacket.setFriendId(requestPacket.getFriendId());
         // 避免出现 id 不存在
         if (userId != null && friendId != null) {
             // 不允许添加自己
@@ -31,8 +34,13 @@ public class DeleteFriendRequestHandler extends SimpleChannelInboundHandler<Dele
                 responsePacket.setMessage("无法删除自身");
             } else {
                 if (FriendDAOImpl.INSTANCE.delete(userId, friendId)) {
-                    responsePacket.setSuccess(true);
-                    responsePacket.setFriendId(requestPacket.getFriendId());
+                    if (MessageDAOImpl.INSTANCE.deleteBySenderAndReceiver(userId, friendId, Message.TYPE_FRIEND)) {
+                        responsePacket.setSuccess(true);
+                    } else {
+                        FriendDAOImpl.INSTANCE.add(userId, friendId);
+                        responsePacket.setSuccess(false);
+                        responsePacket.setMessage("好友删除异常");
+                    }
                 } else {
                     responsePacket.setSuccess(false);
                     responsePacket.setMessage("好友删除异常");

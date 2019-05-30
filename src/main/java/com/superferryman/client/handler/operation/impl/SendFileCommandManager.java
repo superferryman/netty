@@ -33,11 +33,12 @@ public class SendFileCommandManager implements Command {
                 uploadFile.setEndPosition(byteRead);
                 uploadFile.setBytes(bytes);
                 uploadFile.setLength(randomAccessFile.length());
-                channel.writeAndFlush(new FileUploadRequestPacket(uploadFile, ((FileUploadRequestPacket) packet).getFriendId(), SessionUtil.getSession(channel).getUserId()));
+                channel.writeAndFlush(new FileUploadRequestPacket(uploadFile,
+                        ((FileUploadRequestPacket) packet).getReceiverId(),
+                        SessionUtil.getSession(channel).getUserId(),
+                        ((FileUploadRequestPacket) packet).getType()));
             }
             System.out.println("文件已开始传输");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

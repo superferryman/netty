@@ -26,6 +26,6 @@ public class GroupMessageResponseHandler extends SimpleChannelInboundHandler<Gro
         System.out.println("收到群[" + fromGroupId + "]中[" + fromUser + "]发来的消息：" + responsePacket.getMessage());
 
         // 调用 UI 接口显示消息
-        new AcceptAPI().groupChatMessageHandle(fromGroupId, fromUser.getUserId(), responsePacket.getMessage());
+        new AcceptAPI().groupChatMessageHandle(fromGroupId, fromUser.getUserId(), fromUser.getUsername(),responsePacket.getUserAvator(),responsePacket.getMessage());
     }
 }

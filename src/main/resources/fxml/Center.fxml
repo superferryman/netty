@@ -26,9 +26,9 @@
             </Pane>
          </children>
       </Pane>
-      <ScrollPane fx:id="scrollerPane" fitToHeight="true" hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="530.0" prefWidth="254.0" style="-fx-background-color: rgb(240,239,244); -fx-padding: 0; -fx-background-insets: 0;" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+      <ScrollPane fx:id="scrollerPane" fitToHeight="true" hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="530.0" prefWidth="254.0" style="-fx-background-color: rgb(240,239,244); -fx-padding: 0; -fx-background-insets: 0;" VBox.vgrow="ALWAYS">
          <content>
-            <VBox fx:id="friendVBox" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="255.0" style="-fx-background-color: rgb(240,239,244);" />
+            <VBox fx:id="friendVBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="255.0" style="-fx-background-color: rgb(240,239,244);" />
          </content>
       </ScrollPane>
    </children>

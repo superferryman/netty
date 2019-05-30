@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onEnterKeyPress" prefHeight="320.0" prefWidth="480.0" style="-fx-background-color: rgb(62,192,192); -fx-border-width: 1; -fx-border-color: rgb(70,192,192);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.superferryman.client.myChatClient.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onEnterKeyPress" onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="320.0" prefWidth="480.0" style="-fx-background-color: rgb(62,192,192); -fx-border-width: 1; -fx-border-color: rgb(70,192,192);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.superferryman.client.myChatClient.controller.LoginController">
    <children>
       <Pane fx:id="closePane" layoutX="450.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onCloseClick" onMouseEntered="#onCloseEntered" onMouseExited="#onCloseExited" prefHeight="30.0" prefWidth="30.0">
          <children>
@@ -72,6 +72,11 @@
                   <Font name="Microsoft JhengHei UI" size="16.0" />
                </font>
             </Button>
+            <Label layoutX="475.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1.0" prefWidth="1.0">
+               <cursor>
+                  <Cursor fx:constant="SE_RESIZE" />
+               </cursor>
+            </Label>
          </children>
       </Pane>
       <ImageView fitHeight="94.0" fitWidth="400.0" layoutX="44.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
@@ -80,4 +85,7 @@
          </image>
       </ImageView>
    </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
 </AnchorPane>

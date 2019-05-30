@@ -1,12 +1,15 @@
 package com.superferryman.client.myChatClient.component;
 
+import com.superferryman.client.myChatClient.utils.ImageWindow;
 import com.superferryman.client.myChatClient.utils.EmojSet;
-import com.superferryman.client.myChatClient.utils.GlobalState;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
@@ -42,7 +45,18 @@ public class ChatItem extends ImageItem{
         TextFlow textFlow = (TextFlow)((AnchorPane)hBox.getChildren().get(1)).getChildren().get(1);
         textFlow.getChildren().remove(0,textFlow.getChildren().size());
         ImageView imageView = new ImageItem().getImageView(imgUrl,100,150,-1,-1);
+        imageView.setPreserveRatio(true);
         textFlow.setCursor(Cursor.HAND);
+        textFlow.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    new ImageWindow().start(imgUrl);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         textFlow.getChildren().addAll(imageView);
         return hBox;
     }

@@ -1,6 +1,7 @@
 package com.superferryman.client.handler;
 
 import com.superferryman.client.myChatClient.api.AcceptAPI;
+import com.superferryman.pojo.Message;
 import com.superferryman.protocol.common.StringConst;
 import com.superferryman.protocol.common.FileUploadFile;
 import com.superferryman.protocol.request.FileDownloadRequestPacket;
@@ -50,12 +51,25 @@ public class FileDownloadResponseHandler extends SimpleChannelInboundHandler<Fil
         // 更新起始位置
         start = start + byteRead;
         if (byteRead > 0) {
-            ctx.writeAndFlush(new FileDownloadRequestPacket(start, uploadFile, responsePacket.getFromId()));
+            int type = responsePacket.getType();
+            if (type == Message.TYPE_FRIEND) {
+                ctx.writeAndFlush(new FileDownloadRequestPacket(start, uploadFile,
+                        responsePacket.getFromId(), type));
+            } else if (type == Message.TYPE_GROUP) {
+                ctx.writeAndFlush(new FileDownloadRequestPacket(start, uploadFile, responsePacket.getFromId(),
+                        type, responsePacket.getGroupId(), responsePacket.getUsername(), responsePacket.getUserAvator()));
+            }
             randomAccessFile.close();
             // 如果当前为文件结束
             if (byteRead < 10240) {
                 Thread.sleep(1000);
-                new AcceptAPI().chatFileHandle(responsePacket.getFromId(), file);
+                if (type == Message.TYPE_FRIEND) {
+                    new AcceptAPI().chatFileHandle(responsePacket.getFromId(), file);
+                } else if (type == Message.TYPE_GROUP) {
+                    new AcceptAPI().groupChatFileHandle(String.valueOf(responsePacket.getGroupId()),
+                            responsePacket.getFromId(), responsePacket.getUsername(),
+                            responsePacket.getUserAvator(), file);
+                }
                 System.out.println("文件接收成功");
             }
         }

@@ -91,9 +91,10 @@ CREATE TABLE `message` (
   `senderId` varchar(30) COLLATE utf8_bin NOT NULL COMMENT '发送方 id',
   `receiverId` varchar(30) COLLATE utf8_bin NOT NULL COMMENT '接收方 id',
   `content` varchar(1024) COLLATE utf8_bin NOT NULL COMMENT '消息内容',
+  `senderName` varchar(30) COLLATE utf8_bin NOT NULL,
+  `senderAvator` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ----------------------------
 -- Records of message
 -- ----------------------------

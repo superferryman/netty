@@ -29,6 +29,11 @@ public class CreateGroupRequestPacket extends Packet {
     private String creatorId;
 
     /**
+     *  群头像
+     */
+    private Integer avator = 101;
+
+    /**
      * 用户 id 列表，用于存储当前群聊的用户
      */
     private List<String> userIdList;
@@ -73,6 +78,10 @@ public class CreateGroupRequestPacket extends Packet {
 
     public void setCreatorId(String creatorId) {
         this.creatorId = creatorId;
+    }
+
+    public Integer getAvator() {
+        return avator;
     }
 
     @Override

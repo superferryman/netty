@@ -78,15 +78,22 @@ public class FriendItem {
         return pane;
     }
 
-    public Pane getAddFriendItem(String username,String id,String avatorURL){
+    public Pane getAddFriendItem(String username,String id,String avatorURL,String tip){
         Pane pane = new Pane();
         pane.setPrefSize(180,80);
         ImageView avatorImg = getImageView(avatorURL,60,60);
         avatorImg.setLayoutX(10);
         avatorImg.setLayoutY(10);
-        Label idLabel = getLabel(80,10,100,20,"ID："+id,"#797272");
-        Label nameLabel = getLabel(80,33,100,20,"昵称："+username,"#797272");
-        Button button = getButton(81,56,55,22,12,"+好友","white","-fx-background-color: rgb(143,192,231);");
+        Label idLabel = getLabel(80,10,100,20,tip+"ID："+id,"#797272");
+        Label nameLabel = getLabel(80,33,100,20,tip+"昵称："+username,"#797272");
+        String ttip = tip;
+        if(ttip != null && ttip.trim().length() <= 0){
+            ttip = "加好友";
+        }
+        else{
+            ttip = "加入群";
+        }
+        Button button = getButton(81,56,55,22,12,ttip,"white","-fx-background-color: rgb(143,192,231);");
         button.setFont(Font.font("System",FontWeight.BOLD,12));
         button.setCursor(Cursor.HAND);
         //点击触发添加好友信息发送
@@ -96,33 +103,12 @@ public class FriendItem {
                 String myId = GlobalState.userManager.getMyInfo().getId();
                 //先判断该用户是不是已经是好友了
                 if(!GlobalState.userManager.judgeIsFriend(id)){
-                    new SendAPI().sendAddFriendMessage(myId,id);
-                }
-            }
-        });
-        pane.getChildren().addAll(avatorImg,idLabel,nameLabel,button);
-        return pane;
-    }
-
-    public Pane getAddGroupItem(String groupName,String groupId,String avatorURL){
-        Pane pane = new Pane();
-        pane.setPrefSize(180,80);
-        ImageView avatorImg = getImageView(avatorURL,60,60);
-        avatorImg.setLayoutX(10);
-        avatorImg.setLayoutY(10);
-        Label idLabel = getLabel(80,10,100,20,"群ID："+groupId,"#797272");
-        Label nameLabel = getLabel(80,33,100,20,"群昵称："+groupName,"#797272");
-        Button button = getButton(81,56,55,22,12,"+群","white","-fx-background-color: rgb(143,192,231);");
-        button.setFont(Font.font("System",FontWeight.BOLD,12));
-        button.setCursor(Cursor.HAND);
-        //点击触发添加群信息发送
-        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                String myId = GlobalState.userManager.getMyInfo().getId();
-                //先判断该用户是不是已经是好友了
-                if(!GlobalState.userManager.judgeIsFriend(groupId)){
-                    new SendAPI().sendAddGroupMessage(myId,groupId);
+                    if(tip != null && tip.trim().length() > 0){
+                        new SendAPI().sendAddGroupMessage(myId,id);
+                    }
+                    else{
+                        new SendAPI().sendAddFriendMessage(myId,id);
+                    }
                 }
             }
         });
@@ -229,7 +215,7 @@ public class FriendItem {
                 for(UserInfoVo v : GlobalState.userManager.getUserList()){
                     v.getUserInfoPane().setStyle("isclick:0;-fx-background-color:null");
                 }
-                //设置当前焦点对象并渲染相应列表
+                //设置当前聊天对象
                 GlobalState.userManager.setCurrentUser(pane.getId());
                 //设置选中样式
                 pane.setStyle("isclick:1;-fx-background-color:rgb(233,233,237);");

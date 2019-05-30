@@ -1,6 +1,7 @@
 package com.superferryman.client.handler.command.impl;
 
 import com.superferryman.client.handler.command.ConsoleCommand;
+import com.superferryman.pojo.Message;
 import com.superferryman.protocol.common.FileUploadFile;
 import com.superferryman.protocol.request.FileUploadRequestPacket;
 import com.superferryman.util.SessionUtil;
@@ -34,7 +35,7 @@ public class FileUploadConsoleCommand implements ConsoleCommand {
             if ((byteRead = randomAccessFile.read(bytes)) != -1) {
                 uploadFile.setEndPosition(byteRead);
                 uploadFile.setBytes(bytes);
-                channel.writeAndFlush(new FileUploadRequestPacket(uploadFile, friendId, SessionUtil.getSession(channel).getUserId()));
+                channel.writeAndFlush(new FileUploadRequestPacket(uploadFile, friendId, SessionUtil.getSession(channel).getUserId(), Message.TYPE_FRIEND));
             }
             System.out.println("文件已开始传输");
         } catch (FileNotFoundException e) {

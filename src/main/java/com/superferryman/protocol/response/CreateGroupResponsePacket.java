@@ -23,6 +23,11 @@ public class CreateGroupResponsePacket extends Packet {
     private Integer groupId;
 
     /**
+     * 群名称
+     */
+    private String groupName;
+
+    /**
      * 创建失败时的错误信息
      */
     private String message;
@@ -50,6 +55,16 @@ public class CreateGroupResponsePacket extends Packet {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+
 
     @Override
     public Byte getCommand() {

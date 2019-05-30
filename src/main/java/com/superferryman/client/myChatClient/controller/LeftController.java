@@ -1,6 +1,7 @@
 package com.superferryman.client.myChatClient.controller;
 
 import com.superferryman.client.myChatClient.Main;
+import com.superferryman.client.myChatClient.bean.UserInfoVo;
 import com.superferryman.client.myChatClient.component.ImageItem;
 import com.superferryman.client.myChatClient.component.StageItem;
 import com.superferryman.client.myChatClient.utils.GlobalState;
@@ -49,13 +50,10 @@ public class LeftController {
         setLogol();
         onblur();
         friend.setImage(new Image("img/friend2.png"));
-//        VBox vBox = new VBox();
-//        vBox.setStyle("-fx-background-color: white");
-//        FriendItem friendItem = new FriendItem();
-//        for(UserInfoVo userInfoVo : GlobalState.userManager.getUserList()){
-//            vBox.getChildren().add(friendItem.getFriendItem("",userInfoVo.getUserInfo().getUsername(),userInfoVo.getUserInfo().getId()));
-//        }
-//        GlobalState.centerScrollPane.setContent(vBox);
+        for(UserInfoVo v : GlobalState.userManager.getUserList()){
+            v.getUserInfoPane().setStyle("isclick:0;-fx-background-color:null");
+        }
+        GlobalState.userManager.setNullCurrentUser();
     }
 
     public void personClick(MouseEvent mouseEvent) {

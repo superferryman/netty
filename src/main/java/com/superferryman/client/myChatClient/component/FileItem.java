@@ -1,5 +1,6 @@
 package com.superferryman.client.myChatClient.component;
 
+import com.superferryman.protocol.Packet;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
@@ -59,7 +60,19 @@ public class FileItem extends ImageItem{
         Label hyperlink = getHyperlink(117,68,"打开文件夹","#3f71f2",fileURL);
         pane.getChildren().addAll(fileImg,nameLabel,separator,tagLabel,hyperlink);
         addEvent(pane);
-        hBox.getChildren().addAll(getImageView(imgUrl,35,35,-1,-1),new Label(name),pane);
+        hBox.getChildren().addAll(getImageView(imgUrl,35,35,-1,-1),pane);
+       if(name != null && name.trim().length() > 0){
+           Label label = new ChatItem().getLabel(14,-3,200,20,name,14,"#b2b2b2");
+           pane.getChildren().add(label);
+           pane.setTranslateY(20);
+           label.setTranslateY(-20);
+           label.setTranslateX(-5);
+           hBox.setPrefHeight(140);
+           hBox.setMaxHeight(140);
+           hBox.setMinHeight(140);
+           pane.setMaxHeight(87);
+           pane.setMinHeight(87);
+       }
         return hBox;
     }
 
@@ -117,13 +130,5 @@ public class FileItem extends ImageItem{
                 pane.setStyle("-fx-background-color: white;-fx-border-color: rgb(202,202,202);-fx-border-width: 2");
             }
         });
-//        pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                Stage mainStage = null;
-//                FileChooser fileChooser = new FileChooser();//构建一个文件选择器实例
-//                File selectedFile = fileChooser.showOpenDialog(mainStage);
-//            }
-//        });
     }
 }

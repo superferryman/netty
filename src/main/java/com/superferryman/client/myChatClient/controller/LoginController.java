@@ -25,6 +25,10 @@ public class LoginController {
     public Button btn2;
     public Label usernameLabel;
     public Label passwordLabel;
+    private double xOffset;
+    private double yOffset;
+    private double stageX;
+    private double stageY;
 
     public void onLoginClicked(MouseEvent mouseEvent) {
         send();
@@ -107,5 +111,17 @@ public class LoginController {
     public void setUnVis(){
         passwordLabel.setVisible(false);
         usernameLabel.setVisible(false);
+    }
+
+    public void onMouseDragged(MouseEvent mouseEvent) {
+        Main.stage.setX(stageX+ mouseEvent.getScreenX() - xOffset);
+        Main.stage.setY(stageY+ mouseEvent.getScreenY() - yOffset);
+    }
+
+    public void onMousePressed(MouseEvent mouseEvent) {
+        xOffset = mouseEvent.getScreenX();
+        yOffset = mouseEvent.getScreenY();
+        stageX = Main.stage.getX();
+        stageY = Main.stage.getY();
     }
 }

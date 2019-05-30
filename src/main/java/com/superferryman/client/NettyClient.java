@@ -98,12 +98,10 @@ public class NettyClient {
 
     private static void startUIThread(Channel channel) {
         Scanner scanner = new Scanner(System.in);
-        LoginConsoleCommand loginConsoleCommand = new LoginConsoleCommand();
         ConsoleCommandManager consoleCommandManager = new ConsoleCommandManager();
 
         new Thread(() -> {
             if (!SessionUtil.hasLogin(channel)) {
-                /*loginConsoleCommand.exec(scanner, channel);*/
                 SessionUtil.setCurrentChannel(channel);
                 new Thread(() -> {
                     new Main().go(null);

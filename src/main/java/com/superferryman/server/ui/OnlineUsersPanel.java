@@ -84,7 +84,7 @@ public class OnlineUsersPanel extends JPanel {
      * @return 在线用户的二维数组
      */
     private Object[][] onlineUsers() {
-        SimpleDateFormat dateFormater = new SimpleDateFormat("MM-dd-hh-ss");
+        SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
         List<User> list = SessionUtil.getLoginUser();
         Object[][] objNull = new Object[1][];
         if (list != null) {
@@ -182,23 +182,7 @@ public class OnlineUsersPanel extends JPanel {
                         // 取出当前行的用户ID
                         String userId = (String) tabUsers.getValueAt(tabUsers.getSelectedRow(), 0);
                         // 执行下线业务
-                        Channel channel = SessionUtil.getChannel(userId);
-                        User user = null;
-                        try {
-                            user = UserDAOImpl.INSTANCE.findById(userId);
-                            if (user != null) {
-                                SessionUtil.unBindLoginUser(user);
-                            }
-                            // 登出时需要取消 channel 的绑定
-                            SessionUtil.unBindSession(channel);
-                            // 回送登出成功响应
-                            LogoutResponsePacket logoutResponsePacket = new LogoutResponsePacket();
-                            logoutResponsePacket.setSuccess(true);
-                            channel.writeAndFlush(logoutResponsePacket);
-                            channel.close();
-                        } catch (Exception e1) {
-                            e1.printStackTrace();
-                        }
+                        logout(userId);
                         // 更新列表
                         updateTable();
                     }
@@ -221,5 +205,25 @@ public class OnlineUsersPanel extends JPanel {
                 updateTable();
             }
         });
+    }
+
+    private void logout(String userId) {
+        User user = null;
+        try {
+            user = UserDAOImpl.INSTANCE.findById(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (user != null) {
+            SessionUtil.unBindLoginUser(user);
+        }
+        Channel channel = SessionUtil.getChannel(userId);
+        // 登出时需要取消 channel 的绑定
+        SessionUtil.unBindSession(channel);
+        // 回送登出成功响应
+        LogoutResponsePacket logoutResponsePacket = new LogoutResponsePacket();
+        logoutResponsePacket.setSuccess(true);
+        channel.writeAndFlush(logoutResponsePacket);
+        channel.close();
     }
 }

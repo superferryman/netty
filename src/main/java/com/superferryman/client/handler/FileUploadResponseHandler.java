@@ -45,7 +45,7 @@ public class FileUploadResponseHandler extends SimpleChannelInboundHandler<FileU
                 fileUploadFile.setEndPosition(byteRead);
                 fileUploadFile.setBytes(bytes);
                 fileUploadFile.setStartPosition(start);
-                ctx.writeAndFlush(new FileUploadRequestPacket(fileUploadFile, responsePacket.getFriendId(), responsePacket.getUserId()));
+                ctx.writeAndFlush(new FileUploadRequestPacket(fileUploadFile, responsePacket.getReceiverId(), responsePacket.getUserId(), responsePacket.getType()));
                 // 防止因特殊情况而导致的文件被占用
                 randomAccessFile.close();
             } else {

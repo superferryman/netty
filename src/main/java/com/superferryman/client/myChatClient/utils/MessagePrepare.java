@@ -34,7 +34,10 @@ public class MessagePrepare {
             if(!isGroup){
                 new SendAPI().sendFileMessage(myId,targetId,file);
             }
-            if(file.getAbsolutePath().endsWith(".jpg") || file.getAbsolutePath().endsWith(".png")){
+            else{
+                new SendAPI().sendGroupFileMEssage(myId,targetId,file);
+            }
+            if(file.getAbsolutePath().endsWith(".jpg") || file.getAbsolutePath().endsWith(".png") || file.getAbsolutePath().toLowerCase().endsWith(".jpeg") || file.getAbsolutePath().toLowerCase().endsWith(".gif") || file.getAbsolutePath().toLowerCase().endsWith(".bmp")){
                 isFile = 3;
                 fileURL = "file:"+fileURL;
             }
