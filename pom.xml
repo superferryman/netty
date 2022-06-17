@@ -12,7 +12,7 @@
     <properties>
         <netty-all.version>4.1.6.Final</netty-all.version>
         <lombok.version>1.16.12</lombok.version>
-        <fastjson.version>1.2.29</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <mysql.versdion>8.0.13</mysql.versdion>
         <beanutils.version>1.9.3</beanutils.version>
     </properties>
